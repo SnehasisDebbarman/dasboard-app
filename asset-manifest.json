@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SnehasisDebbarman/dasboard-app/static/css/main.fc7a0617.css",
+    "main.js": "/SnehasisDebbarman/dasboard-app/static/js/main.04e78bae.js",
+    "static/js/787.96c6002e.chunk.js": "/SnehasisDebbarman/dasboard-app/static/js/787.96c6002e.chunk.js",
+    "index.html": "/SnehasisDebbarman/dasboard-app/index.html",
+    "main.fc7a0617.css.map": "/SnehasisDebbarman/dasboard-app/static/css/main.fc7a0617.css.map",
+    "main.04e78bae.js.map": "/SnehasisDebbarman/dasboard-app/static/js/main.04e78bae.js.map",
+    "787.96c6002e.chunk.js.map": "/SnehasisDebbarman/dasboard-app/static/js/787.96c6002e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc7a0617.css",
+    "static/js/main.04e78bae.js"
+  ]
+}
