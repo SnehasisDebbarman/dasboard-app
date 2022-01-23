@@ -30,7 +30,7 @@ export default function Todo() {
   };
   
   const listItems = array1.map((item) => (
-    <Paper elevation={3} style={{margin:"10px"}}>
+    <Paper elevation={3} style={{margin:"10px", backgroundColor:"blueviolet" }}>
       <CardContent>{item}</CardContent>
     </Paper>
   ));

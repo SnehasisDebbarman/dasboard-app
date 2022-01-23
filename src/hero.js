@@ -24,8 +24,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange, deepPurple } from "@mui/material/colors";
 import Stack from "@mui/material/Stack";
-import Table from "./table"
-import Todo from "./component/Todo"
+import Table from "./table";
+import Todo from "./component/Todo";
 
 const drawerWidth = 240;
 
@@ -109,8 +109,8 @@ const Hero = (props) => {
     //setOpen(false);
   };
   return (
-    <div>
-      <Box sx={{ display: "flex" }}>
+    <div >
+      <Box sx={{ display: "flex" }} >
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -126,7 +126,7 @@ const Hero = (props) => {
             </Button>
           </Toolbar>
         </AppBar>
-        <Drawer
+        {/* <Drawer
           variant="permanent"
           open={open}
           sx={{
@@ -160,7 +160,7 @@ const Hero = (props) => {
                     <ListItemIcon>
                       {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                     </ListItemIcon>
-                    {/* <ListItemText primary={text} /> */}
+                    {/* <ListItemText primary={text} /> *
                     <label className="quicksand">{text}</label>
                   </ListItem>
                 )
@@ -180,10 +180,14 @@ const Hero = (props) => {
           </Box>
         </Drawer>
 
-        <Box  sx={{ flexGrow: 1, p: 3, marginLeft:20}}>
+         */}
+        <Box sx={{ flexGrow: 1, p: 3, marginLeft: 0 }} style={{backgroundColor:'white',height:'100vh'}}>
+          
           <Toolbar />
-    <Todo/>
+          <Todo />
+        
         </Box>
+         
       </Box>
     </div>
   );

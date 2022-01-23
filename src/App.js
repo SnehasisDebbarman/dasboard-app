@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import "./App.css";
-import Login from "./Login";
+import Login from "./component/Login";
 import Hero from "./hero";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
@@ -97,7 +97,7 @@ function App() {
           hasAccount={hasAccount}
         ></Login>
       ) : (
-        <Hero handleLogout={handleLogout} setHasAccount={setHasAccount}></Hero>
+        <Hero handleLogout={handleLogout} setHasAccount={setHasAccount}  ></Hero>
       )}
       </ThemeProvider>
     </div>
