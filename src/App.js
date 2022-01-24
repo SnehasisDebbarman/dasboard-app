@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import "./App.css";
 import Login from "./component/Login";
-import Hero from "./hero";
+import Hero from "./component/hero";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import {
@@ -10,8 +10,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { ThemeProvider } from '@mui/material/styles';
-import Theme from "./theme"
+import { ThemeProvider } from "@mui/material/styles";
+import Theme from "./theme";
 
 import firebaseApp from "./firebaseApp";
 
@@ -70,8 +70,8 @@ function App() {
       // Check for user status
       if (user) {
         clearInputs();
-        setUser(user);  
-        console.log(user)
+        setUser(user);
+        console.log(user);
       } else {
         setUser("");
       }
@@ -81,25 +81,34 @@ function App() {
     authListner();
   }, []);
   return (
-    <div className="App">
-      <ThemeProvider theme={Theme}>
-      {!user ? (
-        <Login
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          handleLogin={handleLogin}
-          handleSignUp={handleSignUp}
-          setHasAccount={setHasAccount}
-          error={error}
-          setError={setError}
-          hasAccount={hasAccount}
-        ></Login>
-      ) : (
-        <Hero handleLogout={handleLogout} setHasAccount={setHasAccount}  ></Hero>
-      )}
-      </ThemeProvider>
+    <div >
+      
+      
+      {/* <ThemeProvider theme={Theme}> */}
+        
+        {!user ? (
+          <div class='container'>
+          <Login
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            handleLogin={handleLogin}
+            handleSignUp={handleSignUp}
+            setHasAccount={setHasAccount}
+            error={error}
+            setError={setError}
+            hasAccount={hasAccount}
+          ></Login>
+          </div>
+        ) : (
+          <Hero
+            handleLogout={handleLogout}
+            setHasAccount={setHasAccount}
+          ></Hero>
+        )}
+        
+      {/* </ThemeProvider> */}
     </div>
   );
 }

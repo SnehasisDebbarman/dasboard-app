@@ -1,0 +1,60 @@
+.todo:nth-child(1) {
+  display: none;
+}
+.todo {
+  color: white;
+  background-color: plum;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  height:200px;
+  position: relative;
+}
+.todoHeader {
+  font-size: 0.7rem;
+  color:beige;
+}
+.todoBody {
+  font-size: 1rem;
+}
+.todoFooter {
+  position: absolute;
+  font-size: 0.7rem;
+  right: 1rem;
+  bottom: 1rem;
+  color:beige;
+
+}
+.add-btn{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: blueviolet;
+  box-shadow: 31px 46px 68px -3px rgba(200,70,232,0.46);
+  -webkit-box-shadow: 31px 46px 68px -3px rgba(200,70,232,0.46);
+  -moz-box-shadow: 31px 46px 68px -3px rgba(200,70,232,0.46);
+  position: fixed;
+  left: 95%;
+  bottom: 5%;
+  transform: translateX(-50%);
+ 
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: normal;
+  align-items: normal;
+  align-content: normal;
+}
+
+.flex-items {
+  /* height: 200px; */
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex: 0 0 48%;
+  align-self: auto;
+  order: 0;
+  margin: 5px;
+}

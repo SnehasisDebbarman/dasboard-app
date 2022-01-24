@@ -17,10 +17,12 @@ const Login = (props) => {
     hasAccount,
   } = props;
   return (
-    <div className="outDiv " >
+    <div className="outDiv " style={{position:'relative'}} >
+    
       <div className="card" transition-style="in:circle:bottom-right">
         <div className="inner-card">
         {hasAccount ? 
+        
           <h2 className="heading">Login</h2>:
           <h2 className="heading">Register</h2>
           }
@@ -63,7 +65,7 @@ const Login = (props) => {
               {hasAccount ? (
                 <>
                   <Button variant="contained" onClick={handleLogin} style={{backgroundColor:"#8b3582"}} >
-                    Sign In
+                    <p>Log In</p>
                   </Button>
                   <br />
                   <p>
@@ -73,8 +75,9 @@ const Login = (props) => {
                 </>
               ) : (
                 <>
-                  <Button variant="contained" onClick={handleSignUp} style={{backgroundColor:"#8b3582"}} >
-                    Sign UP
+                  <Button variant="contained" onClick={handleSignUp} style={{ backgroundColor:"#8b3582" }}>
+                    <p> Sign UP</p>
+                   
                   </Button>
                   <br />
                   <p >
