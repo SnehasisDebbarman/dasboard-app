@@ -1,0 +1,144 @@
+//primary
+$Primary-Bright-Blue: hsl(220, 98%, 61%);
+$Primary-Check-Background: linear-gradient(hsl(192, 100%, 67%) , hsl(280, 87%, 65%));
+
+
+//light theme
+$lt-Very-Light-Gray: hsl(0, 0%, 98%);
+$lt-Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+$lt-Light-Grayish-Blue: hsl(233, 11%, 84%);
+$lt-Dark-Grayish-Blue: hsl(236, 9%, 61%);
+$lt-Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+
+//dark theme
+$dt-Very-Dark-Blue: hsl(235, 21%, 11%);
+$dt-Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+$dt-Light-Grayish-Blue: hsl(234, 39%, 85%);
+$dt-Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+$dt-Dark-Grayish-Blue: hsl(234, 11%, 52%);
+$dt-Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+$dt-Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
+
+
+.MuiTextField-root{
+    color: white;
+    
+}
+
+
+.bg-light{
+    background-color: $dt-Very-Dark-Blue;
+    background-image: url(../../images/bg-desktop-dark.jpg);
+   
+}
+.bg-dark{
+    background-color: $lt-Very-Light-Gray;
+   
+    background-image: url(../../images/bg-desktop-light.jpg);
+}
+.active-btn{
+    color:$Primary-Bright-Blue;
+}
+
+
+.todo-body{
+   
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    nav{
+        padding: 20px;
+        div{
+            position: absolute;
+            right: 20px;
+        }
+    
+    }
+    main{
+        //background-color: wheat;
+        width: 40vw;
+        min-height: 80vh;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        .todo-nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px;
+           
+            h1{
+                color:white;
+                font-size: 35px;
+                font-weight: 700;
+                letter-spacing: 10px;
+            }
+        }
+        .textfield{
+            display: flex;
+            flex-direction: column;
+            width: auto;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .textfield-dark{
+            color: white;
+            background-color: $dt-Very-Dark-Desaturated-Blue;
+        }
+        .todo-container{
+            
+            display: flex;
+            flex-direction: column;
+            margin: 30px;
+            background-color: white;
+            min-height: 50vh;
+            border-radius: 5px;
+            justify-content: space-between;
+            box-shadow: 0 0 0 2px rgb(85, 82, 82);
+            .todo-control-btn-dark{
+                color: white;
+            }
+            .todo-control-btn{
+                border-top: 1px solid grey;
+                font-weight: 700;
+                font-size: 14px;
+                padding: 20px;
+                display: flex;
+                justify-content: space-between;
+                .todo-states{
+                    
+                    opacity: 1;
+                    display: flex;
+                    gap:10px;
+                    justify-content: space-between;
+                    .todo-state{
+                        opacity: 0.6;
+                    }
+                    .todo-state:active {
+                        color: $Primary-Bright-Blue;
+                    }
+                    .todo-state:hover{
+                        opacity:1;
+                    }
+                }
+                div{
+                    opacity: 0.6;
+                }
+                div:hover{
+                    opacity: 1;
+                }
+
+            }
+
+            //height: Max(auto,60vh);
+        }
+        .todo-container-dark{
+            background-color: $dt-Very-Dark-Desaturated-Blue;
+        }
+       
+    }
+}

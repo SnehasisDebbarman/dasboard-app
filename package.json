@@ -17,9 +17,14 @@
     "firebase-admin": "^10.0.1",
     "gh-pages": "^3.2.3",
     "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
+    "react-draggable-list": "^4.0.4",
+    "react-draggable-lists": "^1.0.1",
     "react-scripts": "5.0.0",
+    "sass": "^1.49.7",
     "transition-style": "^0.1.1",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

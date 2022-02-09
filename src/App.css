@@ -1,13 +1,14 @@
 @import "transition-style";
 body {
+  font-family: 'Josefin Sans', sans-serif;
   background-image: url("./images/430660.jpg");
 }
 
 * {
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 .text1{
-    font-family: "Quicksand", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
     color: #ffffff;
 }
 .text {
