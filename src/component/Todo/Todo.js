@@ -9,7 +9,7 @@ import "./todo.scss";
 import { pink } from "@mui/material/colors";
 // import { styled } from "@mui/material/styles";
 // import DraggableList from "react-draggable-lists";
-// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
 
 import "firebase/compat/auth";
@@ -225,7 +225,9 @@ export default function Todo({ handleLogout }) {
                 updateTodo(uid, e.target.checked, todoItem, todoId);
               }}
               checked={
-                todoStatus === "completed" || checkedStatus[uid] ? true : false
+                todoStatus === "completed" || checkedStatus[uid] === "completed"
+                  ? true
+                  : false
               }
             />
           </IconButton>
@@ -362,53 +364,96 @@ export default function Todo({ handleLogout }) {
             DarkMode ? "todo-container" : "todo-container todo-container-dark"
           }
         >
+          {/* <DragDropContext>
+            <Droppable droppableId="lists">
+              {(provided) => { */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
             }}
+            // {...provided.droppableProps}
+            // innerRef={provided.innerRef}
           >
-            {Todos.map((todo) => {
+            {Todos.map((todo, index) => {
+              // const { provided, innerRef } = props;
               //console.log(uid);
               if (ActiveTodo && !CompletedTodo) {
                 if (todo[1].status === "active") {
                   return (
+                    // <Draggable
+                    //   key={todo[1].id}
+                    //   draggableId={todo[1].id}
+                    //   index={index}
+                    // >
+                    //   {/* {(provided) => ( */}
                     <ListItemContainer
+                      // {...provided.draggableProps}
+                      // innerRef={innerRef}
+                      // provided={provided}
+                      // {...provided.dragHandleProps}
                       key={todo[1].id}
                       todoId={todo[1].id}
                       todoItem={todo[1].item}
                       todoStatus={todo[1].status}
                       uid={todo[0]}
                     />
+                    //   {/* // )} //{" "}
+                    // </Draggable> */}
                   );
                 }
               } else if (!ActiveTodo && CompletedTodo) {
                 if (todo[1].status === "completed") {
                   return (
+                    // <Draggable
+                    //   key={todo[1].id}
+                    //   draggableId={todo[1].id}
+                    //   index={index}
+                    // >
+                    // {(provided) => (
                     <ListItemContainer
+                      // {...provided.draggableProps}
+                      // innerRef={provided.innerRef}
+                      // {...provided.dragHandleProps}
                       key={todo[1].id}
                       todoId={todo[1].id}
                       todoItem={todo[1].item}
                       todoStatus={todo[1].status}
                       uid={todo[0]}
                     />
+                    //   )}
+                    // </Draggable>
                   );
                 }
               } else {
                 return (
+                  // <Draggable
+                  //   key={todo[1].id}
+                  //   draggableId={todo[1].id}
+                  //   index={index}
+                  // >
+                  //   {(provided) => (
                   <ListItemContainer
+                    // {...provided.draggableProps}
+                    // innerRef={provided.innerRef}
+                    // {...provided.dragHandleProps}
                     key={todo[1].id}
                     todoId={todo[1].id}
-                    uid={todo[0]}
                     todoItem={todo[1].item}
                     todoStatus={todo[1].status}
+                    uid={todo[0]}
                   />
+                  //   )}
+                  // </Draggable>
                 );
               }
             })}
           </div>
-
+          ;
+          {/* }}
+            </Droppable>
+          </DragDropContext> */}
           <div
             className={
               !DarkMode
