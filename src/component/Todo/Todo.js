@@ -23,6 +23,7 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
+import DraggableList1 from "../DraggableList";
 
 import firebaseApp from "../../firebaseApp";
 import { async } from "@firebase/util";
@@ -192,9 +193,21 @@ export default function Todo({ handleLogout }) {
     }
   };
 
-  const ListItemContainer = ({ todoId, uid, todoItem, todoStatus }) => {
+  const ListItemContainer = ({
+    todoId,
+    uid,
+    todoItem,
+    todoStatus,
+    // provided,
+    // innerRef,
+  }) => {
     return (
-      <div style={{ borderTop: "0.1px solid grey" }}>
+      <div
+        // {...provided.draggableProps}
+        // {...provided.dragHandleProps}
+        // ref={innerRef}
+        style={{ borderTop: "0.1px solid grey" }}
+      >
         <Paper
           component="form"
           sx={{
@@ -367,6 +380,10 @@ export default function Todo({ handleLogout }) {
           {/* <DragDropContext>
             <Droppable droppableId="lists">
               {(provided) => { */}
+          {/* fake todoList */}
+          {/* <DraggableList1 Todos={Todos} /> */}
+          {/* real todo list */}
+
           <div
             style={{
               display: "flex",
@@ -374,59 +391,11 @@ export default function Todo({ handleLogout }) {
               justifyContent: "flex-start",
             }}
             // {...provided.droppableProps}
+            // provided={provided}
             // innerRef={provided.innerRef}
           >
             {Todos.map((todo, index) => {
-              // const { provided, innerRef } = props;
-              //console.log(uid);
-              if (ActiveTodo && !CompletedTodo) {
-                if (todo[1].status === "active") {
-                  return (
-                    // <Draggable
-                    //   key={todo[1].id}
-                    //   draggableId={todo[1].id}
-                    //   index={index}
-                    // >
-                    //   {/* {(provided) => ( */}
-                    <ListItemContainer
-                      // {...provided.draggableProps}
-                      // innerRef={innerRef}
-                      // provided={provided}
-                      // {...provided.dragHandleProps}
-                      key={todo[1].id}
-                      todoId={todo[1].id}
-                      todoItem={todo[1].item}
-                      todoStatus={todo[1].status}
-                      uid={todo[0]}
-                    />
-                    //   {/* // )} //{" "}
-                    // </Draggable> */}
-                  );
-                }
-              } else if (!ActiveTodo && CompletedTodo) {
-                if (todo[1].status === "completed") {
-                  return (
-                    // <Draggable
-                    //   key={todo[1].id}
-                    //   draggableId={todo[1].id}
-                    //   index={index}
-                    // >
-                    // {(provided) => (
-                    <ListItemContainer
-                      // {...provided.draggableProps}
-                      // innerRef={provided.innerRef}
-                      // {...provided.dragHandleProps}
-                      key={todo[1].id}
-                      todoId={todo[1].id}
-                      todoItem={todo[1].item}
-                      todoStatus={todo[1].status}
-                      uid={todo[0]}
-                    />
-                    //   )}
-                    // </Draggable>
-                  );
-                }
-              } else {
+              function newFunction() {
                 return (
                   // <Draggable
                   //   key={todo[1].id}
@@ -436,7 +405,8 @@ export default function Todo({ handleLogout }) {
                   //   {(provided) => (
                   <ListItemContainer
                     // {...provided.draggableProps}
-                    // innerRef={provided.innerRef}
+                    // innerRef={innerRef}
+                    // provided={provided}
                     // {...provided.dragHandleProps}
                     key={todo[1].id}
                     todoId={todo[1].id}
@@ -448,9 +418,20 @@ export default function Todo({ handleLogout }) {
                   // </Draggable>
                 );
               }
+              if (ActiveTodo && !CompletedTodo) {
+                if (todo[1].status === "active") {
+                  return newFunction();
+                }
+              } else if (!ActiveTodo && CompletedTodo) {
+                if (todo[1].status === "completed") {
+                  return newFunction();
+                }
+              } else {
+                return newFunction();
+              }
             })}
           </div>
-          ;
+
           {/* }}
             </Droppable>
           </DragDropContext> */}

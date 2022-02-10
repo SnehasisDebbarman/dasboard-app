@@ -17,8 +17,8 @@ import firebaseApp from "./firebaseApp";
 
 function App() {
   const [user, setUser] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test123@gmail.com");
+  const [password, setPassword] = useState("123456");
   const [error, setError] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
   const clearInputs = () => {
@@ -79,35 +79,33 @@ function App() {
   };
   useEffect(() => {
     authListner();
+    //automate login , for login activation remove this
+    handleLogin();
   }, []);
   return (
-    <div >
-      
-      
+    <div>
       {/* <ThemeProvider theme={Theme}> */}
-        
-        {!user ? (
-          <div class='container'>
+
+      {!user ? (
+        <div class="container">
           <Login
             email={email}
             setEmail={setEmail}
             password={password}
             setPassword={setPassword}
-            handleLogin={handleLogin}
+            //to activate login un-commented it
+            // handleLogin={handleLogin}
             handleSignUp={handleSignUp}
             setHasAccount={setHasAccount}
             error={error}
             setError={setError}
             hasAccount={hasAccount}
           ></Login>
-          </div>
-        ) : (
-          <Hero
-            handleLogout={handleLogout}
-            setHasAccount={setHasAccount}
-          ></Hero>
-        )}
-        
+        </div>
+      ) : (
+        <Hero handleLogout={handleLogout} setHasAccount={setHasAccount}></Hero>
+      )}
+
       {/* </ThemeProvider> */}
     </div>
   );
