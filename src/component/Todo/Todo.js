@@ -106,16 +106,45 @@ export default function Todo({ handleLogout }) {
   const [dummy, setdummy] = useState("");
   const [ActiveTodo, setActiveTodo] = useState(false);
   const [CompletedTodo, setCompletedTodo] = useState(false);
+  const [checkedStatus, setcheckedStatus] = useState({});
   const desauratedBlue = "hsl(235, 24%, 19%)";
-  const listItems = ["Entertainment"];
+  //const listItems = ["Entertainment"];
   //firestore
   const db = getFirestore();
   useEffect(() => {
     getTodos();
+    setAllTodoStatus(Todos);
   }, [dummy]);
 
+  //set check status of todo
+  const setAllTodoStatus = (Todos) => {
+    let sat = {};
+    if (Todos) {
+      for (let todo of Todos) {
+        sat[todo[0]] = todo[1].status;
+      }
+      setcheckedStatus(sat);
+    }
+  };
+
+  //handle delete chunk
+  const handleClearCompleted = (Todos) => {
+    for (let todo of Todos) {
+      console.log(todo);
+      if (todo[1].status === "completed") {
+        deleteTodo(todo[0]);
+      }
+    }
+    getTodos();
+  };
+
+  //delete
+  async function deleteTodo(todoId) {
+    await deleteDoc(doc(db, "todos", todoId));
+  }
+
   //update
-  async function updateTodo(id, status, item) {
+  async function updateTodo(id, status, item, todoId) {
     let st;
     status ? (st = "completed") : (st = "active");
     await setDoc(doc(db, "todos", id), {
@@ -123,6 +152,7 @@ export default function Todo({ handleLogout }) {
       item: item,
       status: st,
     });
+    getTodos();
   }
 
   async function saveTodo(input) {
@@ -138,7 +168,7 @@ export default function Todo({ handleLogout }) {
       console.error("Error adding document: ", e);
     }
   }
-
+  //get Todos
   async function getTodos() {
     const querySnapshot = await getDocs(collection(db, "todos"));
     const saveFirebaseTodos = [];
@@ -157,12 +187,12 @@ export default function Todo({ handleLogout }) {
       saveTodo(e.target.value);
       //listItems.push(e.target.value);
       setInputValue("");
-      setdummy(e.target.value);
+      setdummy(!dummy);
       // put the login here
     }
   };
 
-  const ListItemContainer = ({ uid, todoItem, todoStatus }) => {
+  const ListItemContainer = ({ todoId, uid, todoItem, todoStatus }) => {
     return (
       <div style={{ borderTop: "0.1px solid grey" }}>
         <Paper
@@ -190,7 +220,13 @@ export default function Todo({ handleLogout }) {
               icon={DarkMode ? <CheckIconDark /> : <CheckIcon />}
               checkedIcon={<GradientCheckIcon />}
               style={!DarkMode ? { color: "white" } : { color: desauratedBlue }}
-              onChange={(e) => updateTodo(uid, e.target.checked, todoItem)}
+              onChange={(e) => {
+                //setcheckedStatus();
+                updateTodo(uid, e.target.checked, todoItem, todoId);
+              }}
+              checked={
+                todoStatus === "completed" || checkedStatus[uid] ? true : false
+              }
             />
           </IconButton>
           <div
@@ -202,20 +238,38 @@ export default function Todo({ handleLogout }) {
                     background: desauratedBlue,
                     color: "white",
                     width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
                   }
                 : {
                     background: "white",
                     color: desauratedBlue,
                     width: "100%",
+                    display: "flex",
                   }
             }
           >
             {todoStatus === "completed" ? (
-              <div style={{ textDecoration: "line-through", color: "gray" }}>
+              <div
+                style={{
+                  textDecoration: "line-through",
+                  color: "gray",
+                  width: "90%",
+                  wordBreak: "break-all",
+                }}
+              >
                 {todoItem}
               </div>
             ) : (
-              <div>{todoItem}</div>
+              <div
+                style={{
+                  wordBreak: "break-all",
+                  width: "90%",
+                }}
+              >
+                {todoItem}
+              </div>
             )}
           </div>
         </Paper>
@@ -283,7 +337,7 @@ export default function Todo({ handleLogout }) {
             </IconButton>
             <InputBase
               sx={{ ml: 1, flex: 1 }}
-              placeholder="Search Google Maps"
+              placeholder="Write your Todo"
               style={
                 !DarkMode
                   ? {
@@ -322,6 +376,7 @@ export default function Todo({ handleLogout }) {
                   return (
                     <ListItemContainer
                       key={todo[1].id}
+                      todoId={todo[1].id}
                       todoItem={todo[1].item}
                       todoStatus={todo[1].status}
                       uid={todo[0]}
@@ -333,6 +388,7 @@ export default function Todo({ handleLogout }) {
                   return (
                     <ListItemContainer
                       key={todo[1].id}
+                      todoId={todo[1].id}
                       todoItem={todo[1].item}
                       todoStatus={todo[1].status}
                       uid={todo[0]}
@@ -343,6 +399,7 @@ export default function Todo({ handleLogout }) {
                 return (
                   <ListItemContainer
                     key={todo[1].id}
+                    todoId={todo[1].id}
                     uid={todo[0]}
                     todoItem={todo[1].item}
                     todoStatus={todo[1].status}
@@ -408,7 +465,9 @@ export default function Todo({ handleLogout }) {
                 Completed
               </div>
             </div>
-            <div>Clear Completed</div>
+            <div onClick={() => handleClearCompleted(Todos)}>
+              Clear Completed
+            </div>
           </div>
         </div>
       </main>
