@@ -1,15 +1,21 @@
 {
   "files": {
-    "main.css": "/dasboard-app/static/css/main.fc7a0617.css",
-    "main.js": "/dasboard-app/static/js/main.ea39d7c2.js",
-    "static/js/787.96c6002e.chunk.js": "/dasboard-app/static/js/787.96c6002e.chunk.js",
+    "main.css": "/dasboard-app/static/css/main.5777c29f.css",
+    "main.js": "/dasboard-app/static/js/main.6db1d651.js",
+    "static/js/787.0d80f981.chunk.js": "/dasboard-app/static/js/787.0d80f981.chunk.js",
+    "static/media/430660.jpg": "/dasboard-app/static/media/430660.2250e42e98f391b60af8.jpg",
+    "static/media/bg-desktop-light.jpg": "/dasboard-app/static/media/bg-desktop-light.3508d620efd5a52bb4ce.jpg",
+    "static/media/bg-desktop-dark.jpg": "/dasboard-app/static/media/bg-desktop-dark.73e47dbb723ebc772ef0.jpg",
     "index.html": "/dasboard-app/index.html",
-    "main.fc7a0617.css.map": "/dasboard-app/static/css/main.fc7a0617.css.map",
-    "main.ea39d7c2.js.map": "/dasboard-app/static/js/main.ea39d7c2.js.map",
-    "787.96c6002e.chunk.js.map": "/dasboard-app/static/js/787.96c6002e.chunk.js.map"
+    "static/media/icon-sun.svg": "/dasboard-app/static/media/icon-sun.910b1f9a23741afc341e95653a51f14f.svg",
+    "static/media/icon-moon.svg": "/dasboard-app/static/media/icon-moon.6c03114b495d05f4380b3c544d9afe2a.svg",
+    "static/media/icon-check.svg": "/dasboard-app/static/media/icon-check.a8fb15d0278c8e312df5fc8364fef863.svg",
+    "main.5777c29f.css.map": "/dasboard-app/static/css/main.5777c29f.css.map",
+    "main.6db1d651.js.map": "/dasboard-app/static/js/main.6db1d651.js.map",
+    "787.0d80f981.chunk.js.map": "/dasboard-app/static/js/787.0d80f981.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fc7a0617.css",
-    "static/js/main.ea39d7c2.js"
+    "static/css/main.5777c29f.css",
+    "static/js/main.6db1d651.js"
   ]
 }
