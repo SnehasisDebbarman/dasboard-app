@@ -1,17 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Button, IconButton, Paper, Checkbox, InputBase } from "@mui/material";
-import sun from "../../images/icon-sun.svg";
-import moon from "../../images/icon-moon.svg";
-import iconCheck from "../../images/icon-check.svg";
-import "./todo.css";
-import "./todo.scss";
-import { pink } from "@mui/material/colors";
-// import { styled } from "@mui/material/styles";
-// import DraggableList from "react-draggable-lists";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { v4 as uuid } from "uuid";
-
+//firebase import
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import {
@@ -23,10 +13,22 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
-import DraggableList1 from "../DraggableList";
-
 import firebaseApp from "../../firebaseApp";
 import { async } from "@firebase/util";
+
+//icons
+import sun from "../../images/icon-sun.svg";
+import moon from "../../images/icon-moon.svg";
+import iconCheck from "../../images/icon-check.svg";
+//css
+import "./todo.css";
+import "./todo.scss";
+import { pink } from "@mui/material/colors";
+//id creation
+import { v4 as uuid } from "uuid";
+//draggable list
+import DraggableList1 from "../DragList/DraggableList";
+
 const GradientCheckIcon = () => {
   return (
     <img
@@ -102,16 +104,21 @@ const CheckIconDark = () => {
 export default function Todo({ handleLogout }) {
   // const array1 = ["a", "b", "c"];
   const [DarkMode, setDarkMode] = useState(false);
-  const [Todos, setTodos] = useState([]);
+  const [Todos, setTodos] = useState();
   const [InputValue, setInputValue] = useState("");
   const [dummy, setdummy] = useState("");
   const [ActiveTodo, setActiveTodo] = useState(false);
   const [CompletedTodo, setCompletedTodo] = useState(false);
   const [checkedStatus, setcheckedStatus] = useState({});
+  const [TodoArray, setTodoArray] = useState([]);
   const desauratedBlue = "hsl(235, 24%, 19%)";
   //const listItems = ["Entertainment"];
   //firestore
   const db = getFirestore();
+  useEffect(() => {
+    getTodos();
+  }, []);
+
   useEffect(() => {
     getTodos();
     setAllTodoStatus(Todos);
@@ -156,6 +163,7 @@ export default function Todo({ handleLogout }) {
     getTodos();
   }
 
+  //save todo
   async function saveTodo(input) {
     //const saveToFirebase = getFirestore();
     try {
@@ -186,28 +194,15 @@ export default function Todo({ handleLogout }) {
     if (e.keyCode == 13) {
       e.preventDefault();
       saveTodo(e.target.value);
-      //listItems.push(e.target.value);
       setInputValue("");
       setdummy(!dummy);
       // put the login here
     }
   };
 
-  const ListItemContainer = ({
-    todoId,
-    uid,
-    todoItem,
-    todoStatus,
-    // provided,
-    // innerRef,
-  }) => {
+  const ListItemContainer = ({ todoId, uid, todoItem, todoStatus }) => {
     return (
-      <div
-        // {...provided.draggableProps}
-        // {...provided.dragHandleProps}
-        // ref={innerRef}
-        style={{ borderTop: "0.1px solid grey" }}
-      >
+      <div style={{ borderTop: "0.1px solid grey" }}>
         <Paper
           component="form"
           sx={{
@@ -246,7 +241,6 @@ export default function Todo({ handleLogout }) {
           </IconButton>
           <div
             float="left"
-            // className={DarkMode ? "textfield textfield-dark" : "textfield"}
             style={
               !DarkMode
                 ? {
@@ -372,50 +366,39 @@ export default function Todo({ handleLogout }) {
             />
           </Paper>
         </div>
-        <div
+        {/*  todo body down.>> */}
+        {Todos === undefined ? (
+          <></>
+        ) : (
+          <DraggableList1
+            todos={Todos}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
+          ></DraggableList1>
+        )}
+
+        {/* <div
           className={
             DarkMode ? "todo-container" : "todo-container todo-container-dark"
           }
         >
-          {/* <DragDropContext>
-            <Droppable droppableId="lists">
-              {(provided) => { */}
-          {/* fake todoList */}
-          {/* <DraggableList1 Todos={Todos} /> */}
-          {/* real todo list */}
-
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
             }}
-            // {...provided.droppableProps}
-            // provided={provided}
-            // innerRef={provided.innerRef}
           >
             {Todos.map((todo, index) => {
               function newFunction() {
                 return (
-                  // <Draggable
-                  //   key={todo[1].id}
-                  //   draggableId={todo[1].id}
-                  //   index={index}
-                  // >
-                  //   {(provided) => (
                   <ListItemContainer
-                    // {...provided.draggableProps}
-                    // innerRef={innerRef}
-                    // provided={provided}
-                    // {...provided.dragHandleProps}
                     key={todo[1].id}
                     todoId={todo[1].id}
                     todoItem={todo[1].item}
                     todoStatus={todo[1].status}
                     uid={todo[0]}
                   />
-                  //   )}
-                  // </Draggable>
                 );
               }
               if (ActiveTodo && !CompletedTodo) {
@@ -431,10 +414,6 @@ export default function Todo({ handleLogout }) {
               }
             })}
           </div>
-
-          {/* }}
-            </Droppable>
-          </DragDropContext> */}
           <div
             className={
               !DarkMode
@@ -494,8 +473,8 @@ export default function Todo({ handleLogout }) {
             <div onClick={() => handleClearCompleted(Todos)}>
               Clear Completed
             </div>
-          </div>
-        </div>
+          </div> 
+        </div>*/}
       </main>
     </div>
   );
